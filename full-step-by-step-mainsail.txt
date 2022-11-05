@@ -7,7 +7,7 @@ Steps followed:
 
 1) Enable SSH and start it (yes that is what --now does)
 
-ssh sudo systemctl enable ssh --now
+sudo systemctl enable ssh --now
 
 2) Install dfu-util: 
 
