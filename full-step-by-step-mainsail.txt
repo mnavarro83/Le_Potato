@@ -5,7 +5,7 @@ b) User with sudo privileges.
 
 Steps followed:
 
-1) Enable 
+1) Enable SSH and start it (yes that is what --now does)
 
 ssh sudo systemctl enable ssh --now
 
@@ -284,6 +284,6 @@ upstream mjpgstreamer4 {
 cd ~/mainsail
 wget -q -O mainsail.zip https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip && unzip mainsail.zip && rm mainsail.zip
 
-That's it, should do it. Further configuration available at: https://docs.mainsail.xyz/setup/manual-setup/mainsail
+That's it, should do it. Macros and mainsail.conf will still need modification very likely. Further configuration available at: https://docs.mainsail.xyz/setup/manual-setup/mainsail
 
 
