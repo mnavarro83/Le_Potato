@@ -121,7 +121,7 @@ type: web
 repo: mainsail-crew/mainsail
 path: ~/mainsail
 
-5) Modify system unit file /etc/systemd/system/moonraker.service, change mnavarro to your username:
+5) Modify system unit file /etc/systemd/system/moonraker.service, change mnavarro to your username in all instances:
 
 [Unit]
 Description=Moonraker provides Web API for klipper
