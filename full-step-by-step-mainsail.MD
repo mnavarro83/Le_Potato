@@ -16,15 +16,21 @@ sudo systemctl enable ssh --now
 
 2) Install dfu-util: 
 
-```sudo apt install dfu-util```
+```
+sudo apt install dfu-util
+```
 
 3) Install Klipper dependencies: 
 
-```sudo apt install virtualenv python-dev libffi-dev build-essential libncurses-dev libusb-dev avrdude gcc-avr binutils-avr avr-libc stm32flash dfu-util libnewlib-arm-none-eabi gcc-arm-none-eabi binutils-arm-none-eabi libusb-1.0-0```
+```
+sudo apt install virtualenv python-dev libffi-dev build-essential libncurses-dev libusb-dev avrdude gcc-avr binutils-avr avr-libc stm32flash dfu-util libnewlib-arm-none-eabi gcc-arm-none-eabi binutils-arm-none-eabi libusb-1.0-0
+```
 
 4) Clone Klipper repo: 
 
-```git clone https://github.com/KevinOConnor/klipper```
+```
+git clone https://github.com/KevinOConnor/klipper
+```
 
 5) Enable virtual environment and install Python dependencies: 
 
@@ -62,11 +68,14 @@ RestartSec=10
 
 7) Enable Klipper (creates paths):
 
-```sudo systemctl enable klipper.service```
+```
+sudo systemctl enable klipper.service
+```
 
 8) Create directories:
 
-```mkdir ~/klipper_config
+```
+mkdir ~/klipper_config
 mkdir ~/klipper_logs
 mkdir ~/gcode_files
 touch ~/klipper_config/printer.cfg
@@ -74,7 +83,8 @@ touch ~/klipper_config/printer.cfg
 
 9) Import suitable configuration into printer.cfg and start klipper
 
-```vim ~/klipper_config/printer.conf
+```
+vim ~/klipper_config/printer.conf
 sudo systemctl start klipper
 ```
 
@@ -82,22 +92,28 @@ sudo systemctl start klipper
 
 1) More dependencies:
 
-```sudo apt install python3-virtualenv python3-dev libopenjp2-7 python3-libgpiod curl libcurl4-openssl-dev libssl-dev liblmdb-dev libsodium-dev zlib1g-dev libjpeg-dev```
+```
+sudo apt install python3-virtualenv python3-dev libopenjp2-7 python3-libgpiod curl libcurl4-openssl-dev libssl-dev liblmdb-dev libsodium-dev zlib1g-dev libjpeg-dev
+```
 
 2) Clone Moonraker:
 
-```git clone https://github.com/Arksine/moonraker.git```
+```
+git clone https://github.com/Arksine/moonraker.git
+```
 
 3) More Python dependencies:
 
-```cd ~
+```
+cd ~
 virtualenv -p python3 ./moonraker-env
 ./moonraker-env/bin/pip install -r ./moonraker/scripts/moonraker-requirements.txt
 ```
 
 4) Edit configuration file ~/klipper_config/moonraker.conf. Following is a BASIC config (not sharing my exact config)
 
-```[server]
+```
+[server]
 host: 0.0.0.0
 port: 7125
 enable_debug_logging: False
@@ -136,7 +152,8 @@ path: ~/mainsail
 
 5) Modify system unit file /etc/systemd/system/moonraker.service, change mnavarro to your username in all instances:
 
-```[Unit]
+```
+[Unit]
 Description=Moonraker provides Web API for klipper
 Documentation=https://moonraker.readthedocs.io/en/latest/
 After=network.target klipper.service
@@ -157,7 +174,8 @@ RestartSec=10
 
 6) Update policy kit:
 
-```sudo apt install packagekit
+```
+sudo apt install packagekit
 ~/moonraker/scripts/install-moonraker.sh -r
 cd ~/moonraker/scripts  
 ./set-policykit-rules.sh  
@@ -166,24 +184,30 @@ sudo service moonraker restart
 
 7) Test:
 
-```http://<printer-ip>:7125/printer/info```
+```
+http://<printer-ip>:7125/printer/info
+```
 
 ## Mainsail
 
 1) Install nginx
 
-```sudo apt install nginx```
+```
+sudo apt install nginx
+```
 
 2) Create necessary configuration files:
 
-```sudo touch /etc/nginx/sites-available/mainsail
+```
+sudo touch /etc/nginx/sites-available/mainsail
 sudo touch /etc/nginx/conf.d/upstreams.conf
 sudo touch /etc/nginx/conf.d/common_vars.conf
 ```
 
 3) In /etc/nginx/sites-available/mainsail
 
-```# /etc/nginx/sites-available/mainsail
+```
+# /etc/nginx/sites-available/mainsail
 
 server {
     listen 80 default_server;
@@ -260,7 +284,8 @@ server {
 
 4) In /etc/nginx/conf.d/common_vars.conf:
 
-```# /etc/nginx/conf.d/common_vars.conf
+```
+# /etc/nginx/conf.d/common_vars.conf
 
 map $http_upgrade $connection_upgrade {
     default upgrade;
@@ -270,7 +295,8 @@ map $http_upgrade $connection_upgrade {
 
 5) In /etc/nginx/conf.d/upstreams.conf
 
-```# /etc/nginx/conf.d/upstreams.conf
+```
+# /etc/nginx/conf.d/upstreams.conf
 
 upstream apiserver {
     ip_hash;
@@ -300,7 +326,8 @@ upstream mjpgstreamer4 {
 
 6) Clone and install Mainsail:
 
-```cd ~/mainsail
+```
+cd ~/mainsail
 wget -q -O mainsail.zip https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip && unzip mainsail.zip && rm mainsail.zip
 ```
 
