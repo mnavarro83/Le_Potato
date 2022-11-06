@@ -14,7 +14,7 @@
 
 # Cons
 
-- No built in wifi. Dongle testing is underway.
+- No built in wifi. Dongle testing is underway. Update: I have verified that the Panda Wireless PAUO5 dongle works out of the box. All you have to do is use raspi-config to setup the wireless SSID information and password. Further testing to follow.
 - Only USB 2.0, no 3.0.
 - GPIO header is numbered differently from a RPi. Some work will need to be done to hook up a display or do other activities with your GPIO: https://docs.google.com/spreadsheets/d/1U3z0Gb8HUEfCIMkvqzmhMpJfzRqjPXq7mFLC-hvbKlE/edit#gid=0
 - Only the base components of the install have been tested. No word yet on Klipper Screen or rPiCam integration but there is no reason to believe it won't work.
