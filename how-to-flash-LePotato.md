@@ -26,4 +26,4 @@ Or 7zip, or WinRAR for the PC/Mac users. Documentation available at the libre.co
 
 5) The installer will open a wizard to create your user (with sudo privileges), password, locale and then reboots to complete the installation.
   
-That should be all. You may now proceed to do normal Linux things or continue on with a manual Klipper install.
+That should be all. You may now proceed to do normal Linux things or continue on with a manual Klipper install. KIAUH (https://www.lpomykal.cz/kiauh-installation-guide/) has also been shown to work at this time.
