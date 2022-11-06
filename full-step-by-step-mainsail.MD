@@ -9,13 +9,11 @@ b) User with sudo privileges.
 
 1) Enable SSH and start it (yes that is what --now does)
 
-```sudo systemctl enable ssh --now
-```
+```sudo systemctl enable ssh --now```
 
 2) Install dfu-util: 
 
-```sudo apt install dfu-util
-```
+```sudo apt install dfu-util```
 
 3) Install Klipper dependencies: 
 
@@ -24,8 +22,7 @@ b) User with sudo privileges.
 
 4) Clone Klipper repo: 
 
-```git clone https://github.com/KevinOConnor/klipper
-```
+```git clone https://github.com/KevinOConnor/klipper```
 
 5) Initialize virtualenv: 
 
@@ -61,8 +58,7 @@ RestartSec=10
 
 7) Enable Klipper (creates paths):
 
-```sudo systemctl enable klipper.service
-```
+```sudo systemctl enable klipper.service```
 
 8) Create directories:
 
@@ -82,13 +78,11 @@ sudo systemctl start klipper
 
 1) More dependencies:
 
-```sudo apt install python3-virtualenv python3-dev libopenjp2-7 python3-libgpiod curl libcurl4-openssl-dev libssl-dev liblmdb-dev libsodium-dev zlib1g-dev libjpeg-dev
-```
+```sudo apt install python3-virtualenv python3-dev libopenjp2-7 python3-libgpiod curl libcurl4-openssl-dev libssl-dev liblmdb-dev libsodium-dev zlib1g-dev libjpeg-dev```
 
 2) Clone Moonraker:
 
-```git clone https://github.com/Arksine/moonraker.git
-```
+```git clone https://github.com/Arksine/moonraker.git```
 
 3) More Python dependencies:
 
@@ -168,15 +162,13 @@ sudo service moonraker restart
 
 7) Test:
 
-```http://<printer-ip>:7125/printer/info
-```
+```http://<printer-ip>:7125/printer/info```
 
 ## Mainsail
 
 1) Install nginx
 
-```sudo apt install nginx
-```
+```sudo apt install nginx```
 
 2) Create necessary configuration files:
 
