@@ -27,7 +27,8 @@ b) User with sudo privileges.
 
 ```cd ~
 virtualenv -p python2 ./klippy-env
-./klippy-env/bin/pip install -r ./klipper/scripts/klippy-requirements.txt```
+./klippy-env/bin/pip install -r ./klipper/scripts/klippy-requirements.txt
+```
 
 6) Edit file /etc/systemd/system/klipper.service. Change "mnavarro" to your user in all applicable entries:
 
@@ -51,7 +52,8 @@ User=mnavarro
 RemainAfterExit=yes
 ExecStart= /home/mnavarro/klippy-env/bin/python /home/mnavarro/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
 Restart=always
-RestartSec=10```
+RestartSec=10
+```
 
 7) Enable Klipper (creates paths):
 
@@ -62,12 +64,14 @@ RestartSec=10```
 ```mkdir ~/klipper_config
 mkdir ~/klipper_logs
 mkdir ~/gcode_files
-touch ~/klipper_config/printer.cfg```
+touch ~/klipper_config/printer.cfg
+```
 
 9) Import suitable configuration into printer.cfg and start klipper
 
 ```vim ~/klipper_config/printer.conf
-sudo systemctl start klipper```
+sudo systemctl start klipper
+```
 
 ## Moonraker:
 
@@ -83,7 +87,8 @@ sudo systemctl start klipper```
 
 ```cd ~
 virtualenv -p python3 ./moonraker-env
-./moonraker-env/bin/pip install -r ./moonraker/scripts/moonraker-requirements.txt```
+./moonraker-env/bin/pip install -r ./moonraker/scripts/moonraker-requirements.txt
+```
 
 4) Edit configuration file ~/klipper_config/moonraker.conf. Following is a BASIC config (not sharing my exact config)
 
@@ -121,7 +126,8 @@ trusted_clients:
 [update_manager mainsail]
 type: web
 repo: mainsail-crew/mainsail
-path: ~/mainsail```
+path: ~/mainsail
+```
 
 5) Modify system unit file /etc/systemd/system/moonraker.service, change mnavarro to your username in all instances:
 
@@ -141,7 +147,8 @@ User=mnavarro
 RemainAfterExit=yes
 ExecStart=/home/mnavarro/moonraker-env/bin/python /home/mnavarro/moonraker/moonraker/moonraker.py -c ${MOONRAKER_CONFIG} -l ${MOONRAKER_LOG}
 Restart=always
-RestartSec=10```
+RestartSec=10
+```
 
 6) Update policy kit:
 
@@ -149,7 +156,8 @@ RestartSec=10```
 ~/moonraker/scripts/install-moonraker.sh -r
 cd ~/moonraker/scripts  
 ./set-policykit-rules.sh  
-sudo service moonraker restart```
+sudo service moonraker restart
+```
 
 7) Test:
 
@@ -165,7 +173,8 @@ sudo service moonraker restart```
 
 ```sudo touch /etc/nginx/sites-available/mainsail
 sudo touch /etc/nginx/conf.d/upstreams.conf
-sudo touch /etc/nginx/conf.d/common_vars.conf```
+sudo touch /etc/nginx/conf.d/common_vars.conf
+```
 
 3) In /etc/nginx/sites-available/mainsail
 
@@ -241,7 +250,8 @@ server {
     location /webcam4/ {
         proxy_pass http://mjpgstreamer4/;
     }
-}```
+}
+```
 
 4) In /etc/nginx/conf.d/common_vars.conf:
 
@@ -250,7 +260,8 @@ server {
 map $http_upgrade $connection_upgrade {
     default upgrade;
     '' close;
-}```
+}
+```
 
 5) In /etc/nginx/conf.d/upstreams.conf
 
@@ -279,12 +290,14 @@ upstream mjpgstreamer3 {
 upstream mjpgstreamer4 {
     ip_hash;
     server 127.0.0.1:8083;
-}```
+}
+```
 
 6) Clone and install Mainsail:
 
 ```cd ~/mainsail
-wget -q -O mainsail.zip https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip && unzip mainsail.zip && rm mainsail.zip```
+wget -q -O mainsail.zip https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip && unzip mainsail.zip && rm mainsail.zip
+```
 
 That's it, should do it. Macros and mainsail.conf will still need modification very likely. Further configuration available at: https://docs.mainsail.xyz/setup/manual-setup/mainsail
 
