@@ -24,7 +24,7 @@ b) User with sudo privileges.
 
 ```git clone https://github.com/KevinOConnor/klipper```
 
-5) Initialize virtualenv: 
+5) Enable virtual environment and install Python dependencies: 
 
 ```cd ~
 virtualenv -p python2 ./klippy-env
