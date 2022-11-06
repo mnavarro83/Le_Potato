@@ -1,5 +1,5 @@
 # Introduction
 
-  Currently this is just a couple of text files with step by step instructions to install Mainsail, Klipper and Moonraker on a AML-S905X-CC SOC (aka Le Potato). This thing: https://libre.computer/products/aml-s905x-cc/ . Documentation to flash the board with Raspbian is in progress and will be complete shortly. Both txt files are best viewed and utilized in raw mode. These instructions are verified working at the moment. Please reach out to me or raise an issue if you find any discrepancies. 
+  Currently this is just a couple of md files with step by step instructions to install Raspbian, Mainsail, Klipper and Moonraker on a AML-S905X-CC SOC (aka Le Potato). This thing: https://libre.computer/products/aml-s905x-cc/ . These instructions are verified working at the moment. Please reach out to me or raise an issue if you find any discrepancies. 
 
-  Soon there will be bash scripts and other automation to cover the installation with possible crossover to a Fluidd install if there is enough interest. 
+  Soon there will be automation to cover the installation with possible crossover to a Fluidd install if there is enough interest. 
