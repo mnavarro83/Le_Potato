@@ -5,9 +5,9 @@ b) User with sudo privileges.
 
 Steps followed:
 
-1) Enable 
+1) Enable SSH and start it (yes that is what --now does)
 
-ssh sudo systemctl enable ssh --now
+sudo systemctl enable ssh --now
 
 2) Install dfu-util: 
 
@@ -121,7 +121,7 @@ type: web
 repo: mainsail-crew/mainsail
 path: ~/mainsail
 
-5) Modify system unit file /etc/systemd/system/moonraker.service, change mnavarro to your username:
+5) Modify system unit file /etc/systemd/system/moonraker.service, change mnavarro to your username in all instances:
 
 [Unit]
 Description=Moonraker provides Web API for klipper
@@ -284,6 +284,6 @@ upstream mjpgstreamer4 {
 cd ~/mainsail
 wget -q -O mainsail.zip https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip && unzip mainsail.zip && rm mainsail.zip
 
-That's it, should do it. Further configuration available at: https://docs.mainsail.xyz/setup/manual-setup/mainsail
+That's it, should do it. Macros and mainsail.conf will still need modification very likely. Further configuration available at: https://docs.mainsail.xyz/setup/manual-setup/mainsail
 
 
