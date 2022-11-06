@@ -4,6 +4,8 @@
 - This board does not include wifi, dongle compatibilty testing is in progress and I will share results when I have data.
 - There are three status lights on the board near the power port. Normal activity is red and green steady with blinking blue. Anything else probably means you flashed the SD card incorrectly
 
+# Process
+
 1) Download the relevant OS, pay attention to the chip version. The lite version is preferred usually unless you need a GUI:
 
 ```
