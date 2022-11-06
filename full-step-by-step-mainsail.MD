@@ -1,6 +1,7 @@
 # Assumptions:
 
-a) Base Raspbian install on Le Potatoe SOC
+a) Base Raspbian install on Le Potato SOC (AML-S905X-CC)
+
 b) User with sudo privileges.
 
 # Steps followed:
