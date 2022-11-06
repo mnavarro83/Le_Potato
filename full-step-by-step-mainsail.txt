@@ -1,35 +1,37 @@
-Assumptions:
+# Assumptions:
 
 a) Base Raspbian install on Le Potatoe SOC
 b) User with sudo privileges.
 
-Steps followed:
+# Steps followed:
+
+## Klipper
 
 1) Enable SSH and start it (yes that is what --now does)
 
-sudo systemctl enable ssh --now
+```sudo systemctl enable ssh --now```
 
 2) Install dfu-util: 
 
-sudo apt install dfu-util
+```sudo apt install dfu-util```
 
 3) Install Klipper dependencies: 
 
-sudo apt install virtualenv python-dev libffi-dev build-essential libncurses-dev libusb-dev avrdude gcc-avr binutils-avr avr-libc stm32flash dfu-util libnewlib-arm-none-eabi gcc-arm-none-eabi binutils-arm-none-eabi libusb-1.0-0
+```sudo apt install virtualenv python-dev libffi-dev build-essential libncurses-dev libusb-dev avrdude gcc-avr binutils-avr avr-libc stm32flash dfu-util libnewlib-arm-none-eabi gcc-arm-none-eabi binutils-arm-none-eabi libusb-1.0-0```
 
 4) Clone Klipper repo: 
 
-git clone https://github.com/KevinOConnor/klipper
+```git clone https://github.com/KevinOConnor/klipper```
 
 5) Initialize virtualenv: 
 
-cd ~
+```cd ~
 virtualenv -p python2 ./klippy-env
-./klippy-env/bin/pip install -r ./klipper/scripts/klippy-requirements.txt
+./klippy-env/bin/pip install -r ./klipper/scripts/klippy-requirements.txt```
 
 6) Edit file /etc/systemd/system/klipper.service. Change "mnavarro" to your user in all applicable entries:
 
-[Unit]
+```[Unit]
 Description=Starts Klipper and provides klippy Unix Domain Socket API
 Documentation=https://www.klipper3d.org/
 After=network.target
@@ -49,43 +51,43 @@ User=mnavarro
 RemainAfterExit=yes
 ExecStart= /home/mnavarro/klippy-env/bin/python /home/mnavarro/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
 Restart=always
-RestartSec=10
+RestartSec=10```
 
 7) Enable Klipper (creates paths):
 
-sudo systemctl enable klipper.service
+```sudo systemctl enable klipper.service```
 
 8) Create directories:
 
-mkdir ~/klipper_config
+```mkdir ~/klipper_config
 mkdir ~/klipper_logs
 mkdir ~/gcode_files
-touch ~/klipper_config/printer.cfg
+touch ~/klipper_config/printer.cfg```
 
 9) Import suitable configuration into printer.cfg and start klipper
 
-vim ~/klipper_config/printer.conf
-sudo systemctl start klipper
+```vim ~/klipper_config/printer.conf
+sudo systemctl start klipper```
 
-Moonraker:
+## Moonraker:
 
 1) More dependencies:
 
-sudo apt install python3-virtualenv python3-dev libopenjp2-7 python3-libgpiod curl libcurl4-openssl-dev libssl-dev liblmdb-dev libsodium-dev zlib1g-dev libjpeg-dev
+```sudo apt install python3-virtualenv python3-dev libopenjp2-7 python3-libgpiod curl libcurl4-openssl-dev libssl-dev liblmdb-dev libsodium-dev zlib1g-dev libjpeg-dev```
 
 2) Clone Moonraker:
 
-git clone https://github.com/Arksine/moonraker.git
+```git clone https://github.com/Arksine/moonraker.git```
 
 3) More Python dependencies:
 
-cd ~
+```cd ~
 virtualenv -p python3 ./moonraker-env
-./moonraker-env/bin/pip install -r ./moonraker/scripts/moonraker-requirements.txt
+./moonraker-env/bin/pip install -r ./moonraker/scripts/moonraker-requirements.txt```
 
 4) Edit configuration file ~/klipper_config/moonraker.conf. Following is a BASIC config (not sharing my exact config)
 
-[server]
+```[server]
 host: 0.0.0.0
 port: 7125
 enable_debug_logging: False
@@ -119,11 +121,11 @@ trusted_clients:
 [update_manager mainsail]
 type: web
 repo: mainsail-crew/mainsail
-path: ~/mainsail
+path: ~/mainsail```
 
 5) Modify system unit file /etc/systemd/system/moonraker.service, change mnavarro to your username in all instances:
 
-[Unit]
+```[Unit]
 Description=Moonraker provides Web API for klipper
 Documentation=https://moonraker.readthedocs.io/en/latest/
 After=network.target klipper.service
@@ -139,35 +141,35 @@ User=mnavarro
 RemainAfterExit=yes
 ExecStart=/home/mnavarro/moonraker-env/bin/python /home/mnavarro/moonraker/moonraker/moonraker.py -c ${MOONRAKER_CONFIG} -l ${MOONRAKER_LOG}
 Restart=always
-RestartSec=10
+RestartSec=10```
 
 6) Update policy kit:
 
-sudo apt install packagekit
+```sudo apt install packagekit
 ~/moonraker/scripts/install-moonraker.sh -r
 cd ~/moonraker/scripts  
 ./set-policykit-rules.sh  
-sudo service moonraker restart
+sudo service moonraker restart```
 
 7) Test:
 
-http://<printer-ip>:7125/printer/info
+```http://<printer-ip>:7125/printer/info```
 
-Mainsail
+## Mainsail
 
 1) Install nginx
 
-sudo apt install nginx
+```sudo apt install nginx```
 
 2) Create necessary configuration files:
 
-sudo touch /etc/nginx/sites-available/mainsail
+```sudo touch /etc/nginx/sites-available/mainsail
 sudo touch /etc/nginx/conf.d/upstreams.conf
-sudo touch /etc/nginx/conf.d/common_vars.conf
+sudo touch /etc/nginx/conf.d/common_vars.conf```
 
 3) In /etc/nginx/sites-available/mainsail
 
-# /etc/nginx/sites-available/mainsail
+```# /etc/nginx/sites-available/mainsail
 
 server {
     listen 80 default_server;
@@ -239,20 +241,20 @@ server {
     location /webcam4/ {
         proxy_pass http://mjpgstreamer4/;
     }
-}
+}```
 
 4) In /etc/nginx/conf.d/common_vars.conf:
 
-# /etc/nginx/conf.d/common_vars.conf
+```# /etc/nginx/conf.d/common_vars.conf
 
 map $http_upgrade $connection_upgrade {
     default upgrade;
     '' close;
-}
+}```
 
 5) In /etc/nginx/conf.d/upstreams.conf
 
-# /etc/nginx/conf.d/upstreams.conf
+```# /etc/nginx/conf.d/upstreams.conf
 
 upstream apiserver {
     ip_hash;
@@ -277,12 +279,12 @@ upstream mjpgstreamer3 {
 upstream mjpgstreamer4 {
     ip_hash;
     server 127.0.0.1:8083;
-}
+}```
 
 6) Clone and install Mainsail:
 
-cd ~/mainsail
-wget -q -O mainsail.zip https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip && unzip mainsail.zip && rm mainsail.zip
+```cd ~/mainsail
+wget -q -O mainsail.zip https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip && unzip mainsail.zip && rm mainsail.zip```
 
 That's it, should do it. Macros and mainsail.conf will still need modification very likely. Further configuration available at: https://docs.mainsail.xyz/setup/manual-setup/mainsail
 
