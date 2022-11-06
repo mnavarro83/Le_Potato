@@ -26,14 +26,16 @@ b) User with sudo privileges.
 
 5) Enable virtual environment and install Python dependencies: 
 
-```cd ~
+```
+cd ~
 virtualenv -p python2 ./klippy-env
 ./klippy-env/bin/pip install -r ./klipper/scripts/klippy-requirements.txt
 ```
 
 6) Edit file /etc/systemd/system/klipper.service. Change "mnavarro" to your user in all applicable entries:
 
-```[Unit]
+```
+[Unit]
 Description=Starts Klipper and provides klippy Unix Domain Socket API
 Documentation=https://www.klipper3d.org/
 After=network.target
