@@ -17,12 +17,16 @@
 - No built in wifi. Dongle testing is underway. Further testing to follow.
 
 #### Verified working out of the box dongles
+   ```
    - Panda Wireless PAU05: https://www.amazon.com/Panda-300Mbps-Wireless-USB-Adapter/dp/B00EQT0YK2/
    - Raspberry Pi Wifi Generic: https://www.amazon.com/gp/product/B00H95C0A2/
    - Canakit RPi Wifi: https://www.amazon.com/CanaKit-Raspberry-Wireless-Adapter-Dongle/dp/B00GFAN498/
+   ```
      
 #### Works with some driver finagleing
+   ```
    - BrosTrend: https://www.amazon.com/BrosTrend-1200Mbps-Wireless-Raspbian-Raspberry/dp/B07FCNP2VL/
+   ```
       
 - Only USB 2.0, no 3.0.
 - GPIO header is numbered differently from a RPi. Some work will need to be done to hook up a display or do other activities with your GPIO: https://docs.google.com/spreadsheets/d/1U3z0Gb8HUEfCIMkvqzmhMpJfzRqjPXq7mFLC-hvbKlE/edit#gid=0
