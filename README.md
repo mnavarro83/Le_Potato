@@ -1,6 +1,6 @@
 # Introduction
 
-  Currently this is just a couple of md files with step by step instructions to install Raspbian, Mainsail, Klipper and Moonraker on a AML-S905X-CC SOC (aka Le Potato). This thing: https://libre.computer/products/aml-s905x-cc/ . These instructions are verified working at the moment. Please reach out to me or raise an issue if you find any discrepancies. 
+  Currently this is just a couple of md files with step by step instructions to install Raspbian, Mainsail, Klipper and Moonraker on a AML-S905X-CC SBC (aka Le Potato). This thing: https://libre.computer/products/aml-s905x-cc/ . These instructions are verified working at the moment. Please reach out to me or raise an issue if you find any discrepancies. 
 
   So far the base install (Mainsail, Klipper, Moonraker) is verified to work with KIAUH (https://www.lpomykal.cz/kiauh-installation-guide/) should you wish to automate the process. Further testing with other KIAUH components is required but there is no reason to believe it will have issues. 
   
